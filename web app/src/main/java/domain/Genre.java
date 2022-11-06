@@ -1,8 +1,6 @@
 package domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,12 +8,14 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Data
 public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long genreID;
+    @NonNull
     private String name;
     @ManyToOne
     @JoinColumn

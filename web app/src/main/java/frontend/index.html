@@ -9,6 +9,32 @@
           crossorigin="anonymous">
 </head>
 <body>
-    <p>This is text</p>
+<div class="container my-2" align="center">
+
+    <h3>Movie List</h3>
+    <a th:href="@{/movie}"class="btn btn-primary btn-sm mb-3" >Get Movie List</a>
+<!--    <a th:href="@{/addnew}" class="btn btn-primary btn-sm mb-3" >Add Employee</a>-->
+<!--    <table style="width:80%" border="1"-->
+<!--           class = "table table-striped table-responsive-md">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>Name</th>-->
+<!--            <th>Email</th>-->
+<!--            <th>Action</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr th:each="employee:${allemplist}">-->
+<!--            <td th:text="${employee.name}"></td>-->
+<!--            <td th:text="${employee.email}"></td>-->
+<!--            <td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}"-->
+<!--                    class="btn btn-primary">Update</a>-->
+<!--                <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}"-->
+<!--                   class="btn btn-danger">Delete</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+</div>
 </body>
 </html>

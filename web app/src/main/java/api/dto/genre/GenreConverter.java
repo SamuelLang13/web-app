@@ -1,9 +1,8 @@
-package api.dto;
+package api.dto.genre;
 
 import domain.Genre;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class GenreConverter {

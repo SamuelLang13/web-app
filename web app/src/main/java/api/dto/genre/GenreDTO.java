@@ -1,4 +1,4 @@
-package api.dto;
+package api.dto.genre;
 
 import domain.Movie;
 import lombok.AllArgsConstructor;

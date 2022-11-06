@@ -1,6 +1,7 @@
 package api.dto.movie;
 
 import domain.Genre;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@AllArgsConstructor
 public class MovieDTO {
     private Long movieID;
     private String movieName;

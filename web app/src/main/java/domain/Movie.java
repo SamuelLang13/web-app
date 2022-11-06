@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Table
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Movies {
+public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,5 +20,8 @@ public class Movies {
     private int length;
     private int year;
     private String externalLink;
+    @OneToMany
+    @JoinColumn
+    private Set<Genre> genres = new HashSet<>();
 
 }

@@ -23,7 +23,13 @@ public class MovieService extends AbstractCrudService<Long, Movie, MovieReposito
     @Override
     public boolean exists(Movie movie) {
         Optional<Movie> optionalMovie = repository.getMovieByMovieNameAndAndYearAndExternalLink(movie.getMovieName(),movie.getYear(), movie.getExternalLink());
-        return optionalMovie.isEmpty();
+        return optionalMovie.isPresent();
+    }
+
+    @Override
+    public boolean findById(Long key) {
+        Optional<Movie> optionalMovie = repository.getMovieByMovieID(key);
+        return optionalMovie.isPresent();
     }
 
 

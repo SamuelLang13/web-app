@@ -11,6 +11,8 @@ public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<
 
     public abstract boolean exists(E entity);
 
+    public abstract boolean findById(K key);
+
     public AbstractCrudService(REPOSITORY repository) {
         this.repository = repository;
     }
@@ -21,9 +23,13 @@ public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<
 
     @Transactional
     public void create(E entity) throws Exception {
-//        if (exists(entity))
-//            throw new RuntimeException("ERROR");
+        if (exists(entity))
+            throw new RuntimeException("ERROR");
         repository.save(entity);
     }
 
+    public void delete(K key ) {
+
+        repository.deleteById(key);
+    }
 }

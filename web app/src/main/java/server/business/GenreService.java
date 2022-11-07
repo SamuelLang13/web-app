@@ -16,6 +16,11 @@ public class GenreService extends AbstractCrudService<Long, Genre, GenreReposito
         return false;
     }
 
+    @Override
+    public boolean findById(Long key) {
+        return false;
+    }
+
     public GenreService(GenreRepository repository) {
         super(repository);
     }

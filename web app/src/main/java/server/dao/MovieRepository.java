@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     public Optional<Movie> getMovieByMovieNameAndAndYearAndExternalLink(String name, int year, String externalLink);
+
+    public Optional<Movie> getMovieByMovieID(Long id);
 }

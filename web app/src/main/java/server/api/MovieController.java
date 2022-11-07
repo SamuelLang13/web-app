@@ -22,8 +22,13 @@ public class MovieController {
 
     //        return AwardConverter.fromModel(awardService.create(AwardConverter.toModel(awardDTO)));
     @PostMapping
-    public void saveMovie(@RequestBody MovieDTO movieDTO) throws Exception {
+    public void createMovie(@RequestBody MovieDTO movieDTO) throws Exception {
         movieService.create(MovieConverter.toModel(movieDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteMovie(@PathVariable Long id) throws Exception {
+        movieService.delete(id);
     }
 
 

@@ -1,8 +1,8 @@
-package api;
+package server.api;
 
-import api.dto.genre.GenreConverter;
-import api.dto.genre.GenreDTO;
-import business.GenreService;
+import server.api.dto.genre.GenreConverter;
+import server.api.dto.genre.GenreDTO;
+import server.business.GenreService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

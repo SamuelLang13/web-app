@@ -1,4 +1,4 @@
-package domain;
+package server.domain;
 
 import lombok.*;
 
@@ -20,4 +20,13 @@ public class Genre {
     @ManyToOne
     @JoinColumn
     private Movie movie;
+
+    @Override
+    public String toString() {
+        return "Genre{" +
+                "genreID=" + genreID +
+                ", name='" + name + '\'' +
+                ", movie=" + movie +
+                '}';
+    }
 }

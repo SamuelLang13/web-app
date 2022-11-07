@@ -1,4 +1,4 @@
-package business;
+package server.business;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

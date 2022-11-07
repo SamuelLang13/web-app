@@ -1,11 +1,9 @@
-package api.dto.genre;
+package server.api.dto.genre;
 
-import domain.Movie;
+import server.domain.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,5 +11,5 @@ import javax.persistence.*;
 public class GenreDTO {
     private Long genreID;
     private String name;
-    private Movie movie;
+    private String movieName;
 }

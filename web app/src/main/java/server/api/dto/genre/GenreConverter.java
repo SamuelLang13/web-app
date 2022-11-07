@@ -1,6 +1,6 @@
-package api.dto.genre;
+package server.api.dto.genre;
 
-import domain.Genre;
+import server.domain.Genre;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class GenreConverter {
 
     public static GenreDTO  fromModel(Genre genre){
-        return new GenreDTO(genre.getGenreID(), genre.getName(), genre.getMovie());
+        return new GenreDTO(genre.getGenreID(), genre.getName(), genre.getMovie().getMovieName());
     }
 
     public static Genre  toModel(GenreDTO genre){

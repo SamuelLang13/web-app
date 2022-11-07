@@ -1,6 +1,6 @@
-package dao;
+package server.dao;
 
-import domain.Movie;
+import server.domain.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

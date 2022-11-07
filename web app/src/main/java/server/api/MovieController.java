@@ -1,7 +1,8 @@
-package api;
+package server.api;
 
-import api.dto.movie.MovieDTO;
-import business.MovieService;
+import server.api.dto.movie.MovieConverter;
+import server.api.dto.movie.MovieDTO;
+import server.business.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/movie")
+@RequestMapping("api/v1/movie")
 public class MovieController {
 
-    private MovieService movieService;
     @Autowired
-    public MovieController(MovieService movieService){
-        this.movieService = movieService;
-    }
+    private MovieService movieService;
+
     @GetMapping
     public Collection<MovieDTO> getAllMovies(){
-        return null;
+        return MovieConverter.fromModels(movieService.readAll());
     }
+
+
 }

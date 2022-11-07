@@ -1,10 +1,9 @@
-package api.dto.movie;
+package server.api.dto.movie;
 
-import domain.Genre;
+import server.domain.Genre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,5 +15,5 @@ public class MovieDTO {
     private int length;
     private int year;
     private String externalLink;
-    private Set<Genre> genres = new HashSet<>();
+    private Set<String> genres = new HashSet<>();
 }

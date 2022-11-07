@@ -1,16 +1,14 @@
-package api.dto.movie;
+package server.api.dto.movie;
 
-import api.dto.genre.GenreConverter;
-import api.dto.genre.GenreDTO;
-import domain.Genre;
-import domain.Movie;
+import server.domain.Genre;
+import server.domain.Movie;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class MovieConverter {
     public static MovieDTO fromModel(Movie movie){
-        return new MovieDTO(movie.getMovieID(), movie.getMovieName(), movie.getLength(), movie.getYear(), movie.getExternalLink(), movie.getGenres());
+        return new MovieDTO(movie.getMovieID(), movie.getMovieName(), movie.getLength(), movie.getYear(), movie.getExternalLink(), movie.getGenreName());
     }
 
     public static Movie  toModel(MovieDTO movieDTO){

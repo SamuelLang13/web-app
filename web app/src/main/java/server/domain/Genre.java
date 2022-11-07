@@ -3,6 +3,7 @@ package server.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Table
 @Entity
@@ -28,5 +29,18 @@ public class Genre {
                 ", name='" + name + '\'' +
                 ", movie=" + movie +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Genre genre = (Genre) o;
+        return Objects.equals(genreID, genre.genreID) && name.equals(genre.name) && Objects.equals(movie, genre.movie);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(genreID, name, movie);
     }
 }

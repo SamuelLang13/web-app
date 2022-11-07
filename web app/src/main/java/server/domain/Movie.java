@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,5 +46,18 @@ public class Movie {
                 ", externalLink='" + externalLink + '\'' +
                 ", genres=" + genres +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return length == movie.length && year == movie.year && Objects.equals(movieID, movie.movieID) && movieName.equals(movie.movieName) && externalLink.equals(movie.externalLink) && Objects.equals(genres, movie.genres);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movieID, movieName, length, year, externalLink, genres);
     }
 }

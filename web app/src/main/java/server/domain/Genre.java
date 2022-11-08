@@ -22,6 +22,14 @@ public class Genre {
     @JoinColumn
     private Movie movie;
 
+
+    public String getMovieName(){
+        if(movie==null){
+            return  null;
+        }
+        return movie.getMovieName();
+    }
+
     @Override
     public String toString() {
         return "Genre{" +

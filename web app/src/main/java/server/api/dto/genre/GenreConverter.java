@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 public class GenreConverter {
 
     public static GenreDTO  fromModel(Genre genre){
-        return new GenreDTO(genre.getGenreID(), genre.getName(), genre.getMovie().getMovieName());
+        return new GenreDTO(genre.getGenreID(), genre.getName(), genre.getMovieName());
     }
 
-    public static Genre  toModel(GenreDTO genre){
-        return new Genre(genre.getName());
+    public static Genre  toModel(GenreInDto genre){
+        return new Genre(genre.getGenreName());
     }
 
-    public static Collection<Genre>  toModels(Collection<GenreDTO> genres){
+    public static Collection<Genre>  toModels(Collection<GenreInDto> genres){
         return genres.stream().map(GenreConverter::toModel).collect(Collectors.toList());
     }
 

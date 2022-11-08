@@ -2,9 +2,11 @@ package server.business;
 
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import server.api.exception.NoEntityFoundException;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.Optional;
 
 public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<E,K>> {
     protected final REPOSITORY repository;
@@ -12,6 +14,7 @@ public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<
     public abstract boolean exists(E entity);
 
     public abstract boolean findById(K key);
+    public abstract Optional<E> getById(K key);
 
     public AbstractCrudService(REPOSITORY repository) {
         this.repository = repository;
@@ -24,7 +27,7 @@ public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<
     @Transactional
     public void create(E entity) throws Exception {
         if (exists(entity))
-            throw new RuntimeException("ERROR");
+            throw new NoEntityFoundException();
         repository.save(entity);
     }
 

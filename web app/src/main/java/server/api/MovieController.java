@@ -3,10 +3,14 @@ package server.api;
 import org.springframework.web.bind.annotation.*;
 import server.api.dto.movie.MovieConverter;
 import server.api.dto.movie.MovieDTO;
+import server.api.dto.movie.MovieInDto;
+import server.api.exception.NoEntityFoundException;
 import server.business.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import server.domain.Movie;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/movie")
@@ -20,9 +24,16 @@ public class MovieController {
         return MovieConverter.fromModels(movieService.readAll());
     }
 
-    //        return AwardConverter.fromModel(awardService.create(AwardConverter.toModel(awardDTO)));
+    @GetMapping("/{id}")
+    public MovieDTO getMovie(@PathVariable Long id){
+        if(!movieService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        return MovieConverter.fromModel(movieService.getById(id).get());
+    }
+
     @PostMapping
-    public void createMovie(@RequestBody MovieDTO movieDTO) throws Exception {
+    public void createMovie(@RequestBody MovieInDto movieDTO) throws Exception {
         movieService.create(MovieConverter.toModel(movieDTO));
     }
 

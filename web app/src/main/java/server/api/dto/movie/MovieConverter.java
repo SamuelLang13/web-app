@@ -11,11 +11,11 @@ public class MovieConverter {
         return new MovieDTO(movie.getMovieID(), movie.getMovieName(), movie.getLength(), movie.getYear(), movie.getExternalLink(), movie.getGenreName());
     }
 
-    public static Movie  toModel(MovieDTO movieDTO){
+    public static Movie  toModel(MovieInDto movieDTO){
         return new Movie(movieDTO.getMovieName(), movieDTO.getLength(), movieDTO.getYear(), movieDTO.getExternalLink());
     }
 
-    public static Collection<Movie> toModels(Collection<MovieDTO> movies){
+    public static Collection<Movie> toModels(Collection<MovieInDto> movies){
         return movies.stream().map(MovieConverter::toModel).collect(Collectors.toList());
     }
 

@@ -42,5 +42,13 @@ public class MovieController {
         movieService.delete(id);
     }
 
+    @PutMapping("/{id}")
+    public void updateMovie(@PathVariable Long id, @RequestBody MovieInDto movieInDto) {
+        if(!movieService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        movieService.update(id,movieInDto);
+    }
+
 
 }

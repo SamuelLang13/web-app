@@ -3,11 +3,15 @@ package server.business;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import server.api.dto.movie.MovieDTO;
+import server.api.dto.movie.MovieInDto;
+import server.api.exception.NoEntityFoundException;
 import server.dao.GenreRepository;
 import server.dao.MovieRepository;
 import server.domain.Genre;
 import server.domain.Movie;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,6 +38,15 @@ public class MovieService extends AbstractCrudService<Long, Movie, MovieReposito
     @Override
     public Optional<Movie> getById(Long key) {
         return repository.findById(key);
+    }
+
+    @Transactional
+    public void update(Long key, MovieInDto movieDTO){
+        Movie movie = getEntityById(key);
+        movie.setMovieName(movieDTO.getMovieName());
+        movie.setYear(movieDTO.getYear());
+        movie.setLength(movieDTO.getLength());
+        movie.setExternalLink(movieDTO.getExternalLink());
     }
 
 

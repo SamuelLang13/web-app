@@ -16,6 +16,8 @@ public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<
     public abstract boolean findById(K key);
     public abstract Optional<E> getById(K key);
 
+//    public abstract void update(K key,E entity);
+
     public AbstractCrudService(REPOSITORY repository) {
         this.repository = repository;
     }
@@ -32,7 +34,15 @@ public abstract class AbstractCrudService<K,E, REPOSITORY extends JpaRepository<
     }
 
     public void delete(K key ) {
-
         repository.deleteById(key);
     }
+
+    public E getEntityById(K id) {
+        Optional<E> entity = repository.findById(id);
+        if(entity.isEmpty()) {
+            throw new NoEntityFoundException();
+        }
+        return entity.get();
+    }
+
 }

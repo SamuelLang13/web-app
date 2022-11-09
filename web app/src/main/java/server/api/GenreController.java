@@ -1,5 +1,6 @@
 package server.api;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import server.api.dto.genre.GenreConverter;
 import server.api.dto.genre.GenreDTO;
@@ -13,7 +14,7 @@ import lombok.AllArgsConstructor;
 
 import java.util.Collection;
 
-@RestController
+@Controller
 @RequestMapping("api/v1/genre")
 @AllArgsConstructor
 public class GenreController {

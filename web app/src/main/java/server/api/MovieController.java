@@ -1,5 +1,6 @@
 package server.api;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import server.api.dto.movie.MovieConverter;
 import server.api.dto.movie.MovieDTO;
@@ -12,7 +13,7 @@ import server.domain.Movie;
 import java.util.Collection;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("api/v1/movie")
 public class MovieController {
 
@@ -24,7 +25,7 @@ public class MovieController {
         return MovieConverter.fromModels(movieService.readAll());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public MovieDTO getMovie(@PathVariable Long id){
         if(!movieService.findById(id)){
             throw new NoEntityFoundException();
@@ -33,16 +34,18 @@ public class MovieController {
     }
 
     @PostMapping
-    public void createMovie(@RequestBody MovieInDto movieDTO) throws Exception {
+    public String createMovie(@ModelAttribute("movieInDto")  MovieInDto movieDTO) throws Exception {
         movieService.create(MovieConverter.toModel(movieDTO));
+        return "redirect:/";
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable Long id) throws Exception {
+    @DeleteMapping("/delete/{id}")
+    public String deleteMovie(@PathVariable Long id) throws Exception {
         movieService.delete(id);
+        return "redirect:/";
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public void updateMovie(@PathVariable Long id, @RequestBody MovieInDto movieInDto) {
         if(!movieService.findById(id)){
             throw new NoEntityFoundException();

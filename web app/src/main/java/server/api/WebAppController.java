@@ -3,10 +3,7 @@ package server.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -15,6 +12,7 @@ import server.api.dto.movie.MovieConverter;
 import server.api.dto.movie.MovieDTO;
 import server.api.dto.movie.MovieInDto;
 import server.business.MovieService;
+import server.domain.Movie;
 
 import java.util.Collection;
 
@@ -30,11 +28,24 @@ public class WebAppController {
         return"index";
     }
 
-    @GetMapping("/add-new-movie")
+    @GetMapping("/add-movie")
     public String addNewMovie(Model model) {
         MovieInDto movieInDto = new MovieInDto();
         model.addAttribute("movie", movieInDto);
-        return "newmovie";
+        return "addmovie";
+    }
+
+    @GetMapping("/update-movie/{id}")
+    public String updateMovie(@PathVariable long id, Model model) {
+        MovieInDto movie = new MovieInDto();
+        model.addAttribute("movie", movie);
+        return "updatemovie";
+    }
+
+    @GetMapping("/delete-movie/{id}")
+    public String deleteThroughId(@PathVariable(value = "id") long id) {
+        movieService.delete(id);
+        return "redirect:/";
     }
 
 }

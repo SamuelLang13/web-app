@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import server.api.dto.movie.MovieConverter;
 import server.api.dto.movie.MovieDTO;
 import server.api.dto.movie.MovieInDto;
+import server.api.exception.NoEntityFoundException;
 import server.business.MovieService;
 import server.domain.Movie;
 
@@ -40,6 +41,15 @@ public class WebAppController {
         MovieInDto movie = new MovieInDto();
         model.addAttribute("movie", movie);
         return "updatemovie";
+    }
+
+    @GetMapping("/get-movie/{id}")
+    public String getMovie(@PathVariable Long id, Model model){
+        if(!movieService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        model.addAttribute("movie",movieService.getById(id).get());
+        return "movie";
     }
 
     @GetMapping("/delete-movie/{id}")

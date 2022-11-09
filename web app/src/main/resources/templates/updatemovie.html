@@ -13,17 +13,19 @@
   <hr>
   <h2>Update Employee</h2>
 
-  <form action="#" th:action="@{/api/v1/movie/update/{id}(id=${movie.movieID})}" th:object="${movie}"
-        method="POST">
+  <form action="#" th:action="@{/api/v1/movie/update/{id}(id=${updateMovie.movieID})}" th:object="${updateMovie}"
+        method="put">
 
     <!-- Add hidden form field to handle update -->
     <input type="hidden" th:field="*{movieID}" />
 
     <input type="text" th:field="*{movieName}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{year}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{length}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{externalLink}" class="form-control mb-4 col-4">
+    <input type="text" th:field="*{genreName}" class="form-control mb-4 col-4">
 
-<!--    <input type="text" th:field="*{movie.}" class="form-control mb-4 col-4">-->
-
-    <button type="submit" class="btn btn-info col-2"> Update Employee</button>
+    <button type="submit" class="btn btn-info col-2"> Update Movie</button>
   </form>
 
   <hr>

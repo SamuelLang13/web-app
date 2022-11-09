@@ -38,8 +38,8 @@ public class WebAppController {
 
     @GetMapping("/update-movie/{id}")
     public String updateMovie(@PathVariable long id, Model model) {
-        MovieInDto movie = new MovieInDto();
-        model.addAttribute("movie", movie);
+        Movie movie = new Movie();
+        model.addAttribute("updateMovie", movie);
         return "updatemovie";
     }
 

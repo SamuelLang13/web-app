@@ -11,6 +11,7 @@ import server.api.dto.movie.MovieInDto;
 import server.api.exception.NoEntityFoundException;
 import server.business.GenreService;
 import lombok.AllArgsConstructor;
+import server.domain.Genre;
 
 import java.util.Collection;
 
@@ -41,11 +42,11 @@ public class GenreController {
     }
 
     @PutMapping("/{id}")
-    public void updateMovie(@PathVariable Long id, @RequestBody GenreInDto movieInDto) {
+    public void updateMovie(@PathVariable Long id, @ModelAttribute("updateGenre") Genre genre) {
         if(!genreService.findById(id)){
             throw new NoEntityFoundException();
         }
-        genreService.update(id,movieInDto);
+        genreService.update(id,genre);
     }
 
 

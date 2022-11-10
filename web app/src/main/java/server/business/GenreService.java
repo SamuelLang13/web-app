@@ -32,9 +32,9 @@ public class GenreService extends AbstractCrudService<Long, Genre, GenreReposito
     }
 
     @Transactional
-    public void update(Long key, GenreInDto genreInDto){
+    public void update(Long key, Genre genreInDto){
         Genre genre = getEntityById(key);
-        genre.setName(genreInDto.getGenreName());
+        genre.setName(genreInDto.getName());
     }
 
     public GenreService(GenreRepository repository) {

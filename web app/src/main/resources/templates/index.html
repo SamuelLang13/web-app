@@ -48,7 +48,7 @@
     <tr th:each="genre:${genres}">
         <td th:text="${genre.name}"></td>
         <td th:text="${genre.movieName}"></td>
-        <td> <a th:href="@{/update-movie/{id}(id=${genre.genreID})}"
+        <td> <a th:href="@{/update-genre/{id}(id=${genre.genreID})}"
                 class="btn btn-primary">Update</a>
             <a th:href="@{delete-genre/{id}(id=${genre.genreID})}"
                class="btn btn-danger">Delete</a>

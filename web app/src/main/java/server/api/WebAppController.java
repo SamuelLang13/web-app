@@ -15,9 +15,11 @@ import server.api.dto.movie.MovieInDto;
 import server.api.exception.NoEntityFoundException;
 import server.business.GenreService;
 import server.business.MovieService;
+import server.domain.Genre;
 import server.domain.GenreType;
 import server.domain.Movie;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -69,10 +71,22 @@ public class WebAppController {
 
     @GetMapping("/update-movie/{id}")
     public String updateMovie(@PathVariable long id, Model model) {
-        Movie movie = new Movie();
-        movie.setMovieID(id);
+        if(!movieService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        Movie movie = movieService.getEntityById(id);
         model.addAttribute("updateMovie", movie);
         return "updatemovie";
+    }
+
+    @GetMapping("/update-genre/{id}")
+    public String updateGenre(@PathVariable long id, Model model) {
+        if(!genreService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        Genre genre = genreService.getEntityById(id);
+        model.addAttribute("updateGenre", genre);
+        return "updategenre";
     }
 
     /**
@@ -117,6 +131,9 @@ public class WebAppController {
      */
     @GetMapping("/delete-genre/{id}")
     public String deleteGenreById(@PathVariable(value = "id") long id) {
+        if(!genreService.findById(id)){
+            throw new NoEntityFoundException();
+        }
         genreService.delete(id);
         return "redirect:/";
     }

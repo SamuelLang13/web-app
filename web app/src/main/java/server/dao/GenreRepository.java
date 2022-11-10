@@ -2,6 +2,7 @@ package server.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import server.domain.Genre;
+import server.domain.GenreType;
 import server.domain.Movie;
 
 import java.util.Optional;

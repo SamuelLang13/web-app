@@ -3,6 +3,7 @@ package server.api.dto.movie;
 import server.domain.Genre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import server.domain.GenreType;
 
 import java.util.HashSet;
 import java.util.Set;

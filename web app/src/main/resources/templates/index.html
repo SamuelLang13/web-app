@@ -11,6 +11,7 @@
 <body>
     <h1>Movie List</h1>
     <a th:href="@{/add-movie}" class="btn btn-primary btn-sm mb-3" >Add movie</a>
+    <a th:href="@{/add-genre}" class="btn btn-primary btn-sm mb-3" >Add genre</a>
     <table style="width:80%" border="1"
            class = "table table-striped table-responsive-md">
         <thead>
@@ -35,6 +36,24 @@
                class="btn btn-danger">Delete</a>
             <a th:href="@{get-movie/{id}(id=${movie.movieID})}"
                class="btn btn-danger">Get</a>
+    </tr>
+    </tbody>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Movie</th>
+        </tr>
+        </thead>
+        <tbody>
+    <tr th:each="genre:${genres}">
+        <td th:text="${genre.name}"></td>
+        <td th:text="${genre.movieName}"></td>
+        <td> <a th:href="@{/update-movie/{id}(id=${genre.genreID})}"
+                class="btn btn-primary">Update</a>
+            <a th:href="@{delete-genre/{id}(id=${genre.genreID})}"
+               class="btn btn-danger">Delete</a>
+            <a th:href="@{get-genre/{id}(id=${genre.genreID})}"
+               class="btn btn-primary">Get</a>
     </tr>
     </tbody>
     </table>

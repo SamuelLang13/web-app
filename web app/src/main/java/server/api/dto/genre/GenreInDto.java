@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import server.domain.GenreType;
 
 @Data
+@NoArgsConstructor
 public class GenreInDto {
     private String genreName;
 

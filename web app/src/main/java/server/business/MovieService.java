@@ -49,5 +49,18 @@ public class MovieService extends AbstractCrudService<Long, Movie, MovieReposito
         movie.setExternalLink(movieDTO.getExternalLink());
     }
 
+    @Transactional
+    public void update(Long key, Movie movieDTO){
+        Movie movie = getEntityById(key);
+        movie.setMovieName(movieDTO.getMovieName());
+        movie.setYear(movieDTO.getYear());
+        movie.setLength(movieDTO.getLength());
+        movie.setExternalLink(movieDTO.getExternalLink());
+    }
+
+    public void doesHaveGenre(){
+
+    }
+
 
 }

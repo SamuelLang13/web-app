@@ -1,5 +1,6 @@
 package server.api.dto.genre;
 
+import server.domain.GenreType;
 import server.domain.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Data;

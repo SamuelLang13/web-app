@@ -35,8 +35,9 @@ public class GenreController {
     }
 
     @PostMapping
-    public void createGenre(@RequestBody GenreInDto genreDTO) throws Exception {
-        genreService.create(GenreConverter.toModel(genreDTO));
+    public String createGenre(@ModelAttribute("genreIn") GenreInDto genreInDto) throws Exception {
+        genreService.create(GenreConverter.toModel(genreInDto));
+        return "redirect:/";
     }
 
     @PutMapping("/{id}")

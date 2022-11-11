@@ -3,6 +3,7 @@ package server.business;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import server.api.dto.genreMovie.GenreMovie;
 import server.api.dto.movie.MovieDTO;
 import server.api.dto.movie.MovieInDto;
 import server.api.exception.NoEntityFoundException;
@@ -62,5 +63,16 @@ public class MovieService extends AbstractCrudService<Long, Movie, MovieReposito
 
     }
 
+    public void addGenre(GenreMovie genreMovie){
 
+    }
+
+
+    public Movie getByName(String movieName) {
+        Optional<Movie> movie = repository.getMovieByMovieName(movieName);
+        if(movie.isEmpty()){
+            throw new NoEntityFoundException();
+        }
+        return movie.get();
+    }
 }

@@ -13,7 +13,7 @@
     <hr>
     <h2>Update Genre</h2>
 
-    <form action="#" th:action="@{api/v1/genre/update/{id}(id=*{genreID})}" th:object="${updateGenre}"
+    <form action="#" th:action="@{/save}" th:object="${updateGenre}"
           th:method="put">
 
         <!-- Add hidden form field to handle update -->

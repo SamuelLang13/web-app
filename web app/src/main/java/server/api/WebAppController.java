@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import server.api.dto.genre.GenreInDto;
+import server.api.dto.genreMovie.GenreMovie;
 import server.api.dto.movie.MovieConverter;
 import server.api.dto.movie.MovieDTO;
 import server.api.dto.movie.MovieInDto;
@@ -20,9 +21,7 @@ import server.domain.GenreType;
 import server.domain.Movie;
 
 import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class WebAppController {
@@ -135,6 +134,32 @@ public class WebAppController {
             throw new NoEntityFoundException();
         }
         genreService.delete(id);
+        return "redirect:/";
+    }
+
+    @PutMapping("/save")
+    public void updateMovie(@PathVariable Long id, @ModelAttribute("updateGenre") Genre genre) {
+        if(!genreService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        genreService.update(id,genre);
+    }
+
+    @GetMapping("/add-genre-to-movie")
+    public String addGenreToMovie(Model model){
+        GenreMovie genreMovie = new GenreMovie();
+        model.addAttribute("genreMovie", genreMovie);
+        return "addgenretomovie";
+    }
+
+
+    @PostMapping("/save")
+    public String saveGenreMovie(@ModelAttribute("employee") GenreMovie genreMovie) {
+        Genre genre = genreService.getByName(genreMovie.getGenreName());
+        Movie movie = movieService.getByName(genreMovie.getMovieName());
+        Set<Genre> genreSet = movie.getGenres();
+        genreSet.add(genre);
+        genre.setMovie(movie);
         return "redirect:/";
     }
 

@@ -13,6 +13,7 @@ import server.api.dto.genreMovie.GenreMovie;
 import server.api.dto.movie.MovieConverter;
 import server.api.dto.movie.MovieDTO;
 import server.api.dto.movie.MovieInDto;
+import server.api.exception.IllegalAction;
 import server.api.exception.NoEntityFoundException;
 import server.business.GenreService;
 import server.business.MovieService;
@@ -78,6 +79,18 @@ public class WebAppController {
         return "updatemovie";
     }
 
+    @PostMapping("/save-movie")
+    public String saveMovie(@ModelAttribute("movie") Movie movie) {
+        movieService.update(movie.getMovieID(),movie);
+        return "redirect:/";
+    }
+
+    @PostMapping("/save-genre")
+    public String saveMovie(@ModelAttribute("genre") Genre genre) {
+        genreService.update(genre.getGenreID(),genre);
+        return "redirect:/";
+    }
+
     @GetMapping("/update-genre/{id}")
     public String updateGenre(@PathVariable long id, Model model) {
         if(!genreService.findById(id)){
@@ -119,6 +132,13 @@ public class WebAppController {
      */
     @GetMapping("/delete-movie/{id}")
     public String deleteMovieById(@PathVariable(value = "id") long id) {
+        if(!movieService.findById(id)){
+            throw new NoEntityFoundException();
+        }
+        Movie movie = movieService.getEntityById(id);
+        if(movie.getGenres()!=null){
+            throw new IllegalAction();
+        }
         movieService.delete(id);
         return "redirect:/";
     }
@@ -132,6 +152,10 @@ public class WebAppController {
     public String deleteGenreById(@PathVariable(value = "id") long id) {
         if(!genreService.findById(id)){
             throw new NoEntityFoundException();
+        }
+        Genre genre = genreService.getEntityById(id);
+        if(genre.getMovieName()!=null){
+            throw new IllegalAction();
         }
         genreService.delete(id);
         return "redirect:/";

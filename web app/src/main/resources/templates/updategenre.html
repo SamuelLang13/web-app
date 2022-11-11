@@ -13,14 +13,13 @@
     <hr>
     <h2>Update Genre</h2>
 
-    <form action="#" th:action="@{/save}" th:object="${updateGenre}"
+    <form action="#" th:action="@{/save-genre}" th:object="${updateGenre}"
           th:method="put">
 
         <!-- Add hidden form field to handle update -->
         <input type="hidden" th:field="*{genreID}" />
 
         <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
-        <input type="text" th:field="*{movieName}" class="form-control mb-4 col-4">
         <button type="submit" class="btn btn-info col-2"> Update Genre</button>
     </form>
 
